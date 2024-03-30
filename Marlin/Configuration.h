@@ -1168,7 +1168,8 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 415 } //jr 08/01/24 z to 4000, e to 415 from https://www.bondtech.se/wp-content/uploads/2019/01/Assembly-manual-Bondtech_Prusa_i3_V1.01.pdf
+// z with T8 lead screw (2mm pitch). NEM!7 & driver microstep: (200 * 16) / 8mm = 1600
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 415 } //jr 08/01/24 z to 400, e to 415 from https://www.bondtech.se/wp-content/uploads/2019/01/Assembly-manual-Bondtech_Prusa_i3_V1.01.pdf
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1277,7 +1278,7 @@
 #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN //JR 07/01/2024
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1483,7 +1484,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { 38, 8, -8 } //jr 27.03/24 z using wizard
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1640,10 +1641,10 @@
 // @section motion
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
-//#define INVERT_I_DIR false
+#define INVERT_X_DIR true //jr 26/03/24
+#define INVERT_Y_DIR false//jr 26/03/24
+#define INVERT_Z_DIR true//jr 26/03/24
+//#define INVERT_I_DIR true
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
 //#define INVERT_U_DIR false
@@ -1653,7 +1654,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true//jr 30/03/24
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
